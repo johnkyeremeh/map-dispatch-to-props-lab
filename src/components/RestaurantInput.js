@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { addRestaurant } from '../actions/restaurants';
+import { addRestaurant } from '../actions/restaurants'; //import action creator
 import { connect } from 'react-redux';
 
 export class RestaurantInput extends Component {
@@ -23,6 +23,9 @@ export class RestaurantInput extends Component {
 
   handleOnSubmit = event => {
     event.preventDefault();
+    console.log("Restaurant being added:", this.state)
+    this.props.addRestaurant(this.state)
+    // this.props.dispatch({type: "ADD_RESTAURANT", restaurant: this.state}) //passing action directly 
     // add missing code
   }
 
@@ -51,4 +54,5 @@ export class RestaurantInput extends Component {
 
 
 //connect this component by wrapping RestaurantInput below
-export default RestaurantInput
+
+export default connect(null, {addRestaurant})(RestaurantInput)
